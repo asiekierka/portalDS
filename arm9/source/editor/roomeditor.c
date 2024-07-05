@@ -306,7 +306,6 @@ void roomEditorControls(void)
 
 void updateRoomEditor(void)
 {
-	scanKeys();
 	touchRead(&currentTouch);
 	if(!currentScreen)
 	{
