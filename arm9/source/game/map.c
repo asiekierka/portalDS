@@ -283,7 +283,7 @@ void drawRect(rectangle_struct rec, vect3D pos, vect3D size, bool c) //TEMP ? (c
 					vect3D vtest1=vect(tp.x+vt2.x,tp.y+vt2.y,0);
 					vect3D vtest2=vect(tp.x,tp.y,0);
 					int32 v=max(max(abs(vtest1.x),abs(vtest1.y)),max(abs(vtest2.x),abs(vtest2.y)));
-					if(v>=32768){iprintf("lala %ld %ld %d %d \n",tp.x,tp.y,inttot16(tw),inttot16(th));continue;}
+					// if(v>=32768){iprintf("lala %ld %ld %d %d \n",tp.x,tp.y,inttot16(tw),inttot16(th));continue;}
 
 					// vc=&rec.lightData.vertex->values[(k++)+rec.lightData.vertex->height];
 					// u8 vb=computeVertexLightings(convertVect(vectDivInt(vect(p.x+v1.x,p.y+v1.y,p.z+v1.z),32)), rec.normal);

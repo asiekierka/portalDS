@@ -2,7 +2,7 @@
 #include <errno.h>
 
 
-char* basePath;
+char *basePath;
 int lastSize;
 
 
@@ -16,7 +16,8 @@ bool initFilesystem(int argc, char **argv)
 	bool saveAvailable;
 	u8 fsMode;
 	#ifndef FATONLY
-		if(nitroFSInit(&basePath))
+		basePath = fatGetDefaultCwd();
+		if(nitroFSInit(NULL))
 		{
 			printf("init : done");
 			chdir("nitro:/");
@@ -64,8 +65,8 @@ void* bufferizeFile(char* filename, char* dir, u32* size, bool binary)
 	FILE* file;
 	NOGBA("opening %s...",filename);
 
-	if(!binary)file = fopen(filename, "r+");
-	else file = fopen(filename, "rb+");
+	if(!binary)file = fopen(filename, "r");
+	else file = fopen(filename, "rb");
 
 	NOGBA("done.");
 
@@ -94,7 +95,7 @@ bool fileExists(char* filename, char* dir)
 	NOGBA(path);
 	chdir(dir);
 	FILE* file;
-	file=fopen(filename, "r+");
+	file=fopen(filename, "r");
 	if(!file){chdir(path);return false;}
 	chdir(path);
 	fclose (file);

@@ -571,7 +571,7 @@ void updateCamera(camera_struct* c)
 	updateFrustum(c);
 
 	int32 alignment=-dotProduct(vect(c->transformationMatrix[0],c->transformationMatrix[3],c->transformationMatrix[6]),normGravityVector);
-	iprintf("alignment : %ld  \n",alignment);
+	// iprintf("alignment : %ld  \n",alignment);
 
 	{
 		if(alignment>32)
