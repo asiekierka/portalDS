@@ -88,7 +88,7 @@ void initPlayer(player_struct* p)
 	p->object->radius=PLAYERRADIUS;
 	p->object->sqRadius=SQPLAYERRADIUS;
 	p->currentRoom=NULL;
-	touchReadFix(&touchCurrent);
+	touchRead(&touchCurrent);
 	touchOld=touchCurrent;
 	p->walkCnt=0;
 	p->life=127;
@@ -320,7 +320,8 @@ void playerControls(player_struct* p)
 
 	if(p->life<=0)changeState(&gameState);
 
-	touchReadFix(&touchCurrent);
+	scanKeys();
+	touchRead(&touchCurrent);
 
 	// if(keysDown() & KEY_TOUCH)
 	// {

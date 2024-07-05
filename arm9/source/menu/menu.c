@@ -129,7 +129,7 @@ void menuFrame(void)
 	GFX_CLEAR_COLOR=RGB15(0,0,0)|(31<<16);
 
 	scanKeys();
-	touchReadFix(&currentTouch);
+	touchRead(&currentTouch);
 
 	//TEMP (updateCamera stuff)
 	menuCamera.viewPosition=menuCamera.position;

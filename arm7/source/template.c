@@ -32,28 +32,19 @@
 
 u32 cnt=0;
 
-//---------------------------------------------------------------------------------
 void VblankHandler(void) {
-//---------------------------------------------------------------------------------
-	// Wifi_Update();
+
 }
 
-
-//---------------------------------------------------------------------------------
 void VcountHandler() {
-//---------------------------------------------------------------------------------
 	inputGetAndSend();
-	// fifoSendValue32(FIFO_USER_05,cnt); //debug
 }
 
 volatile bool exitflag = false;
 
-//---------------------------------------------------------------------------------
 void powerButtonCB() {
-//---------------------------------------------------------------------------------
 	exitflag = true;
 }
-
 
 OBB_struct *testOBB, *testOBB2;
 //plane_struct testPlane;
@@ -67,13 +58,14 @@ int32 sqrtv(int32 x)
 	return (a<SQRTRANGE)?((a)?mulf32(sqrtLUT1[a],sqrtLUT2[b/(2*a)]):(sqrtLUT3[b])):(0);
 }
 
-//---------------------------------------------------------------------------------
 int main() {
-//---------------------------------------------------------------------------------
+	// enableSound();
+
 	readUserSettings();
 
+	touchInit();
+
 	irqInit();
-	// Start the RTC tracking IRQ
 	initClockIRQ();
 	fifoInit();
 
@@ -81,10 +73,8 @@ int main() {
 
 	SetYtrigger(80);
 
-	installSystemFIFO();
-
-	// installWifiFIFO();
 	installSoundFIFO();
+	installSystemFIFO();
 
 	irqSet(IRQ_VCOUNT, VcountHandler);
 	irqSet(IRQ_VBLANK, VblankHandler);
@@ -140,6 +130,12 @@ int main() {
 		}
 
 		listenPI7();
+
+		const uint16_t key_mask = KEY_SELECT | KEY_START | KEY_L | KEY_R;
+		uint16_t keys_pressed = ~REG_KEYINPUT;
+
+		if ((keys_pressed & key_mask) == key_mask)
+			exitflag = true;
 
 		swiWaitForVBlank();
 		cnt++;

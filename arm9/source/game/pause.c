@@ -66,7 +66,7 @@ void doPause(u16* buffer)
 			}
 		}
 
-		touchReadFix(&tp);
+		touchRead(&tp);
 		swiWaitForVBlank();
 	}
 	lcdMainOnTop();

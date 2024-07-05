@@ -48,7 +48,7 @@ void initRoomEdition(void)
 	editorScale=inttof32(8*20);
 
 	//controls stuff
-	touchReadFix(&currentTouch);
+	touchRead(&currentTouch);
 	oldTouch=currentTouch;
 
 	//cosmetics
@@ -307,7 +307,8 @@ void roomEditorControls(void)
 
 void updateRoomEditor(void)
 {
-	touchReadFix(&currentTouch);
+	scanKeys();
+	touchRead(&currentTouch);
 	if(!currentScreen)
 	{
 		updateLineOfTouch(currentTouch.px-128, currentTouch.py-96);
