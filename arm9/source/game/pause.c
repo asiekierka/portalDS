@@ -1,5 +1,4 @@
 #include "game/game_main.h"
-#include "engine/touch.h"
 
 
 static struct gl_texture_t* pauseImage;
