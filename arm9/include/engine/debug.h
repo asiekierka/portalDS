@@ -22,9 +22,7 @@ do {                                \
 #define PROF2_START()
 #define PROF2_END(_time) _time=92431
 
-#define NOGBA(_fmt, _args...) do { char nogba_buffer[256]; sprintf(nogba_buffer, _fmt, ##_args); N3DNoCashMsg(nogba_buffer); } while(0)
-
-extern int N3DNoCashMsg(const char *pText);
+#define NOGBA(_fmt, _args...) do { char nogba_buffer[128]; snprintf(nogba_buffer, sizeof(nogba_buffer), _fmt, ##_args); nocashMessage(nogba_buffer); } while(0)
 
 void DS_Debug(char* string, ...);
 void DS_DebugPause(void);
