@@ -21,7 +21,7 @@ enum ECprsTag
 };
 
 //! Create the compression header word (little endian)
-u32	cprs_create_header(uint size, u8 tag)
+u32	cprs_create_header(u32 size, u8 tag)
 {
 	u8 data[4];
 
@@ -32,11 +32,11 @@ u32	cprs_create_header(uint size, u8 tag)
 	return *(u32*)data;
 }
 
-uint compressRLE(u16 **dst, u16 *srcD, uint srcS)
+u32 compressRLE(u16 **dst, u16 *srcD, u32 srcS)
 {
 	if(!srcD || !dst)return 0;
 
-	uint ii, rle, non;
+	u32 ii, rle, non;
 	u16 curr =0u;
 	u16 prev;
 
@@ -44,7 +44,7 @@ uint compressRLE(u16 **dst, u16 *srcD, uint srcS)
 	// the original. A checker-board will do it for example.
 	// if srcS is the size of the alternating pattern, then
 	// the endresult will be 4 + srcS + (srcS+0x80-1)/0x80.
-	uint dstS= 8+2*(srcS*2);
+	u32 dstS= 8+2*(srcS*2);
 	u16 *dstD = (u16*)malloc(dstS), *dstL= dstD;
 	if(!dstD)return 0;
 
@@ -111,11 +111,11 @@ uint compressRLE(u16 **dst, u16 *srcD, uint srcS)
 	return dstS;
 }
 
-uint decompressRLE(u16 *dst, u16 *src, uint dstS)
+u32 decompressRLE(u16 *dst, u16 *src, u32 dstS)
 {
 	if(!dst || !src)return 0;
 
-	uint ii, size=0;
+	u32 ii, size=0;
 	u16 *srcL=src+4, *dstD=dst;
 
 	for(ii=0; ii<dstS; ii += size)
