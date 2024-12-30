@@ -91,7 +91,7 @@ void getAnimations(md2Model_struct *mdl)
 	{
 		md2_frame_t *pframe=&mdl->frames[i];
 		trimName(pframe->name);
-		if(strcmp(pframe->name,oldstr))n++;
+		if(oldstr != NULL && strcmp(pframe->name,oldstr))n++;
 		oldstr=pframe->name;
 	}
 	mdl->numAnim=n;

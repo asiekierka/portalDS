@@ -11,7 +11,9 @@ state_struct* getCurrentState(void)
 
 void changeState(state_struct* s)
 {
-	currentState->used=0;
+	if (currentState) {
+		currentState->used=0;
+	}
 	nextState=s;
 }
 
